@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Class3</title>
+        <meta charset="UTF-8" />
+        <metac name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" /> -->
+
+        <style>
+        
+
+
+            *{
+                margin: 0;
+                padding: 0;
+                -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+            }
+            @font-face {
+                font-family: myFont;
+                src: url("../../fonts/digital-7.ttf");
+            }
+            .box{
+                width: 250px;
+                min-height: 300px;
+                border-radius: 5px;
+                margin: 100px auto;
+                background: #2d2d2d;
+                -webkit-box-shadow: 0px 0px 5px #b8b7b7 inset;
+                        box-shadow: 0px 0px 5px #b8b7b7 inset;
+                color: #fff !important;
+                padding: 10px;
+            }
+            input{
+                width: 100%;
+                height: 50px;
+                font-size: 30px;
+                font-weight: bold;
+                font-family: myFont;
+                text-align: right;
+                padding-right: 10px;
+                background: transparent;
+                color: inherit;
+                border: none;
+                margin-bottom: 10px;
+                -webkit-box-shadow: inset 0px 0px 3px #fff;
+                        box-shadow: inset 0px 0px 3px #fff;
+            }
+            .btnBox{
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                gap: 7px;
+                -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                -webkit-box-pack: justify;
+                    -ms-flex-pack: justify;
+                        justify-content: space-between;
+
+            }
+            .btnBox .btn{
+                width: 22%;
+                height: 55px;
+                -webkit-box-shadow: 0px 0px 3px 1px #b8b7b741;
+                        box-shadow: 0px 0px 3px 1px #b8b7b741;
+                font-weight: bold;
+                font-family: sans-serif;
+                text-align: center;
+                line-height: 55px;
+                font-size: 20px;
+                cursor: pointer;
+                border-radius: 10px;
+            }
+            .clacBtn{
+                color: aquamarine;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <button>Click</button>
+
+        <div class="box">
+            <input type="text" value="0">
+            <div class="btnBox">
+                <div class="btn clacBtn">AC</div>
+                <div class="btn clacBtn">DE</div>
+                <div class="btn clacBtn">.</div>
+                <div class="btn clacBtn">/</div>
+                <div class="btn">7</div>
+                <div class="btn">8</div>
+                <div class="btn">9</div>
+                <div class="btn clacBtn">*</div>
+                <div class="btn">4</div>
+                <div class="btn">5</div>
+                <div class="btn">6</div>
+                <div class="btn clacBtn">-</div>
+                <div class="btn">1</div>
+                <div class="btn">2</div>
+                <div class="btn">3</div>
+                <div class="btn clacBtn">+</div>
+                <div class="btn">00</div>
+                <div class="btn">0</div>
+                <div class="btn clacBtn" style="width: 49%;">=</div>
+            </div>
+        </div>
+
+        <script>
+            let inp = document.querySelector("input");
+            let val = "";
+            let buttons = document.querySelectorAll(".btn");
+            buttons.forEach((items) =>{
+                items.addEventListener("click", (event) =>{
+                   
+                    val += event.target.innerHTML;
+                        
+                    if (event.target.innerHTML == "AC"){
+                        inp.value = "";
+                        val = "";
+                    }
+                    else if(event.target.innerHTML == "DE"){
+                       let arrStr = [...inp.value];
+                        arrStr = arrStr.filter((value) =>{
+                            return value != "D" && value != "E";
+                        })
+                        arrStr.pop();                        
+                        val = arrStr.join("");
+                    }
+                    inp.value = val;
+                    if(event.target.innerHTML == "="){
+                        let calcValue = eval(val.slice(0,val.length-1));
+                        inp.value = calcValue;
+                        val = "";
+                    }
+                })
+            });
+            let arr = [1,2,3,4,5,6,7,8,9];
+            document.querySelector("button").addEventListener("click", (even) =>{
+                arr.pop();
+                console.log(arr);
+            });
+            
+        </script>
+        
+    </body>
+</html>
